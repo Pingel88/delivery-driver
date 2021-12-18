@@ -5,6 +5,7 @@ using UnityEngine;
 public class Delivery : MonoBehaviour
 {
     bool hasPackage = false;
+    [SerializeField] float destroyDelay = 1f;
 
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -17,6 +18,7 @@ public class Delivery : MonoBehaviour
         {
             Debug.Log("Package picked up!");
             hasPackage = true;
+            Destroy(other.gameObject, destroyDelay);
         }
         if (other.tag == "Customer" && hasPackage)
         {
